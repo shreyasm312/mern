@@ -33,7 +33,7 @@ export const userEditAPI = async ({ data }) => {
 };
 export const userDeleteAPI = async ({ data }) => {
   try {
-    let response = await http.delete(`/api/user/${data.userID}`);
+    let response = await http.delete(`/api/user/${data}`);
     return response;
   } catch (error) {
     throw new error(error);
