@@ -41,6 +41,15 @@ export class Dashboard extends Component {
         dispatch(userClear());
       }
     }
+    if (this.props.userDelete !== prevProps.userDelete) {
+      if (this.props.userDelete.status === 'success') {
+        this.setState({
+          users: this.state.users.filter(
+            (item) => item._id !== this.state.userId
+          ),
+        });
+      }
+    }
   }
   onUserDropDown = ({ key }) => {
     if (key === 'delete') {
