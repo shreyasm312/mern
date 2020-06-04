@@ -1,0 +1,201 @@
+{
+	"info": {
+		"_postman_id": "f47341fa-1e47-4e97-b28c-f95fee47c3a9",
+		"name": "mern",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Health check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:7001",
+					"host": [
+						"localhost"
+					],
+					"port": "7001"
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sign up",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "shreyas",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "shreyasm312@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "pass123*",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:7001/signup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7001",
+					"path": [
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sign in",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "shreyasm312@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "pass123*",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:7001/signin",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7001",
+					"path": [
+						"signin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all users",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZDhhYmQ2Nzc0ZDIyMDc0MTIwMWY3NCIsImlhdCI6MTU5MTI2NzU2NywiZXhwIjoxNTkxMjY3NjI3fQ._qVHTKU-hQBKeOaiT0WZAYFFkF8DbLbMOqn8SR4Lf28",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7001/api/user/all",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7001",
+					"path": [
+						"api",
+						"user",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit user by ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZDhhYmQ2Nzc0ZDIyMDc0MTIwMWY3NCIsImlhdCI6MTU5MTI2NzU2NywiZXhwIjoxNTkxMjY3NjI3fQ._qVHTKU-hQBKeOaiT0WZAYFFkF8DbLbMOqn8SR4Lf28",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "meow",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:7001/api/user/5ed8abd6774d220741201f74",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7001",
+					"path": [
+						"api",
+						"user",
+						"5ed8abd6774d220741201f74"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete user by ID",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZDhhYmQ2Nzc0ZDIyMDc0MTIwMWY3NCIsImlhdCI6MTU5MTI2Nzc4MSwiZXhwIjoxNTkxMjY3ODQxfQ.yqIUD_TOAKYjxwH96bFVZu6HaG0Yfs-BAbukqe5i4co",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7001/api/user/5ed8abd6774d220741201f74",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7001",
+					"path": [
+						"api",
+						"user",
+						"5ed8abd6774d220741201f74"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
