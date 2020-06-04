@@ -8,9 +8,9 @@ import middleware, { sagaMiddleware } from './middleware';
 
 const reducer = persistReducer(
   {
-    key: 'vendor-app',
+    key: 'mern',
     storage,
-    whitelist: ['user']
+    whitelist: ['user'],
   },
   combineReducers({ ...rootReducer })
 );
@@ -26,7 +26,7 @@ const configStore = (initialState = {}) => {
   sagaMiddleware.run(rootSaga);
   return {
     persistor: persistStore(store),
-    store
+    store,
   };
 };
 
