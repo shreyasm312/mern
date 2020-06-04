@@ -1,7 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { Layout, Menu, Card, Avatar, Dropdown, Button } from 'antd';
+import {
+  Layout,
+  Menu,
+  Card,
+  Avatar,
+  Dropdown,
+  Button,
+  Modal,
+  Input,
+} from 'antd';
 import { EllipsisOutlined } from '@ant-design/icons';
 
 import {
@@ -24,8 +33,33 @@ export class Dashboard extends Component {
   state = {
     users: [],
     userId: undefined,
+    visible: false,
+    name: undefined,
+  };
+  showModal = () => {
+    this.setState({
+      visible: true,
+    });
+  };
+
+  handleOk = (e) => {
+    const { dispatch } = this.props;
+    const { name, userId } = this.state;
+    dispatch(userEdit({ name, userId }));
+    this.setState({
+      visible: false,
+    });
+  };
+
+  handleCancel = (e) => {
+    this.setState({
+      visible: false,
+    });
   };
   componentDidMount() {
+    setInterval(function () {
+      dispatch(userGetAll());
+    }, 60 * 1000);
     const { dispatch } = this.props;
     dispatch(userGetAll());
   }
@@ -50,13 +84,28 @@ export class Dashboard extends Component {
         });
       }
     }
+    if (this.props.userEdit !== prevProps.userEdit) {
+      if (this.props.userEdit.status === 'success') {
+        this.setState({
+          ...this.state,
+          users: this.state.users.map((item) =>
+            item._id === this.state.userId
+              ? {
+                  ...item,
+                  name: this.state.name,
+                }
+              : item
+          ),
+        });
+      }
+    }
   }
   onUserDropDown = ({ key }) => {
     if (key === 'delete') {
       const { dispatch } = this.props;
       dispatch(userDelete(this.state.userId));
     } else {
-      console.log('edit');
+      this.showModal();
     }
   };
   render() {
@@ -85,7 +134,7 @@ export class Dashboard extends Component {
           </Header>
           <Content style={{ padding: '50px 50px' }} className="h-screen">
             {users.map((item, index) => (
-              <div className="site-layout-content" key={index} className="p-4">
+              <div key={index} className="p-4">
                 <Card style={{ width: 300 }}>
                   <Meta
                     avatar={
@@ -113,6 +162,14 @@ export class Dashboard extends Component {
           </Content>
           <Footer style={{ textAlign: 'center' }}>Created by Shreyas</Footer>
         </Layout>
+        <Modal
+          title="Edit user name"
+          visible={this.state.visible}
+          onOk={this.handleOk}
+          onCancel={this.handleCancel}
+        >
+          <Input onChange={(e) => this.setState({ name: e.target.value })} />
+        </Modal>
       </div>
     );
   }

@@ -25,7 +25,9 @@ export const userGetAllAPI = async ({ data }) => {
 };
 export const userEditAPI = async ({ data }) => {
   try {
-    let response = await http.patch(`/api/user/${data.userID}`, data);
+    let response = await http.patch(`/api/user/${data.userId}`, {
+      name: data.name,
+    });
     return response;
   } catch (error) {
     throw new error(error);
