@@ -8,3 +8,12 @@ export const selectRegister = createSelector([selectUser], (user) =>
 export const selectLogin = createSelector([selectUser], (user) =>
   user ? user.login : {}
 );
+export const selectUserGetAll = createSelector([selectUser], (user) =>
+  user ? user.userGetAll : {}
+);
+export const selectUserEdit = createSelector([selectUser], (user) =>
+  user ? user.userEdit : {}
+);
+export const selectUserDelete = createSelector([selectUser], (user) =>
+  user ? user.userDelete : {}
+);
