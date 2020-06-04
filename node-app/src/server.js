@@ -4,6 +4,8 @@ import { logger, morganLogs, gracefulExit, handleBodyRequestParsing, security } 
 import config from './config';
 import { connect } from './utils/db';
 import { protect } from './utils/auth';
+import { signup, signin } from './resources/user/user.controllers';
+import userRouter from './resources/user/user.router';
 
 export const start = async () => {
   process
@@ -16,6 +18,12 @@ export const start = async () => {
   handleBodyRequestParsing(app);
   morganLogs(app);
   app.get('/', (_req, res) => res.status(200).json({ message: 'Hello from user service 👨' }));
+  app.post('/signup', signup);
+  app.post('/signin', signin);
+
+  app.use('/api', protect);
+  app.use('/api/user', userRouter);
+
   try {
     connect();
     app.listen(config.port, () => {
