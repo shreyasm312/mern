@@ -1,5 +1,6 @@
 import express from 'express';
 import chalk from 'chalk';
+import cors from 'cors';
 import { logger, morganLogs, gracefulExit, handleBodyRequestParsing, security } from './lib';
 import config from './config';
 import { connect } from './utils/db';
@@ -14,12 +15,12 @@ export const start = async () => {
     .on('uncaughtException', gracefulExit)
     .on('unhandledRejection', gracefulExit);
   const app = express();
-  security(app);
+  app.use(cors());
   handleBodyRequestParsing(app);
   morganLogs(app);
   app.get('/', (_req, res) => res.status(200).json({ message: 'Hello from user service 👨' }));
-  app.post('/signup', signup);
-  app.post('/signin', signin);
+  app.post('/register', signup);
+  app.post('/login', signin);
 
   app.use('/api', protect);
   app.use('/api/user', userRouter);
