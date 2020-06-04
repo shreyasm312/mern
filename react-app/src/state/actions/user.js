@@ -7,10 +7,12 @@ export const {
   userGetAll,
   userEdit,
   userDelete,
+  userClear,
 } = createActions({
   [userActionTypes.USER_LOGIN]: (data) => ({ data }),
   [userActionTypes.USER_REGISTER]: (data) => ({ data }),
   [userActionTypes.USER_GET_ALL]: (data) => ({ data }),
   [userActionTypes.USER_EDIT]: (data) => ({ data }),
   [userActionTypes.USER_DELETE]: (data) => ({ data }),
+  [userActionTypes.USER_CLEAR]: (data) => ({ data }),
 });

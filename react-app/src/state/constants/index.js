@@ -16,6 +16,7 @@ export const userActionTypes = keyMirror({
   USER_DELETE: undefined,
   USER_DELETE_SUCCESS: undefined,
   USER_DELETE_FAILURE: undefined,
+  USER_CLEAR: undefined,
 });
 export const STATUS = {
   IDLE: 'idle',

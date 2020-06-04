@@ -18,7 +18,7 @@ export const loginAPI = async ({ data }) => {
 export const userGetAllAPI = async ({ data }) => {
   try {
     let response = await http.get(`/api/user/all`, data);
-    return response;
+    return response.data;
   } catch (error) {
     throw new error(error);
   }

@@ -40,7 +40,7 @@ export default {
       },
       [userActionTypes.USER_LOGIN_SUCCESS]: (draft, { payload }) => {
         draft.login.data = payload ? payload.data : {};
-        draft.login.jwt = payload ? payload.data.jwt : null;
+        draft.login.jwt = payload ? payload.data.token : null;
         draft.login.status = STATUS.SUCCESS;
         draft.login.isAuthentificated = true;
         draft.login.loading = false;
@@ -78,7 +78,7 @@ export default {
         draft.userGetAll.loading = true;
       },
       [userActionTypes.USER_GET_ALL_SUCCESS]: (draft, { payload }) => {
-        draft.userGetAll.data = payload ? payload : {};
+        draft.userGetAll.data = payload ? payload.data : {};
         draft.userGetAll.status = STATUS.SUCCESS;
         draft.userGetAll.loading = false;
       },
@@ -121,6 +121,9 @@ export default {
         draft.userDelete.status = STATUS.ERROR;
         draft.userDelete.loading = false;
         message[draft.userDelete.status](['Please try after some time!']);
+      },
+      [userActionTypes.USER_CLEAR]: (draft) => {
+        draft.login = userState.login;
       },
     },
     userState
